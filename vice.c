@@ -16,14 +16,21 @@ printf("PieceTwo:%X\n",PieceTwo);
 printf("PieceThree:%X\n",PieceThree);
 printf("PieceFour:%X\n",PieceFour);
 
-int Key = PieceOne ^ PieceTwo ^ PieceThree ^ PieceFour; // ^ XOR Bitwise operation ``
-int TempKey = PieceOne; 
+int Key = PieceOne ^ PieceTwo ^ PieceFour; // ^ XOR Bitwise operation ``
+int TempKey = PieceTwo; 
 TempKey ^= PieceThree; 
 TempKey ^= PieceFour;  
-TempKey ^= PieceTwo 
+TempKey ^= PieceOne; 
   
   printf("Key:%X\n",Key);
 printf("TempKey:%X\n",TempKey);
+
+TempKey ^= PieceThree; 
+printf("(Three out) TempKey:%X\n", TempKey);
+
+TempKey ^= PieceThree; 
+printf("(Three in again) TempKey:%X\n", TempKey);
+
  /*int index = 0; 
  U64 playBitBoard = 0ULL; 
 
