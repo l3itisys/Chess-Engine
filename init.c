@@ -3,7 +3,24 @@
 #include "defs.h"
 
    int Sq120ToSq64[BRD_SQ_NUM]; 
-   int Sq64ToSq120[64]; 
+   int Sq64ToSq120[64];
+
+    U64 SetMask[64]; 
+    U64 ClearMask[64]; 
+
+   void InitBitMasks(){
+     int index = 0;
+
+     for (index = 0; index < 64; index++){
+       SetMask[index] = 0ULL; 
+       ClearMask[index] = 0ULL; 
+     }
+     
+     for (index = 0; index < 64; index++){
+       SetMask[index] |= (1ULL << index); 
+       ClearMask[index] = ~SetMask[index]; 
+     }
+   }
 
    // Initialization 
   void InitSq120To64 (){
@@ -32,7 +49,8 @@
   }
 
 void AllInit(){
-  InitSq120To64 (); 
+  InitSq120To64 ();
+  InitBitMasks();
 
 }
 
