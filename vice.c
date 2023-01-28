@@ -20,6 +20,7 @@ int main() {
    if(index%8 == 0) printf("\n");
  printf("%5d", Sq64ToSq120[index]);
  }
+ printf("\n");
 
   return 0; 
 }
