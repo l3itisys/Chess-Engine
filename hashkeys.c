@@ -27,7 +27,7 @@ U64 GeneratePosKey(const S_BOARD *pos) {
 
   ASSERT(pos->castlePerm>=0 && pos->castlePerm<=15);
 
-  finalKey ^= castleKeys[pos->castlePerm]; 
+  finalKey ^= CastleKeys[pos->castlePerm]; 
 
   return finalKey; 
 }
