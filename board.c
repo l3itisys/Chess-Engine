@@ -3,13 +3,14 @@
 #include "stdio.h"
 #include "defs.h"
 
-int Parse_Fen(char *fen, S_BOARD *pos){
+int ParseFen(char *fen, S_BOARD *pos){
 
   ASSERT(fen!=NULL);
   ASSERT(pos!=NULL);
 
   int rank = RANK_8;
   int file = FILE_A;
+  int count = 0; 
   int piece = 0; 
   int i = 0; 
   int sq64 = 0; 
@@ -56,7 +57,56 @@ int Parse_Fen(char *fen, S_BOARD *pos){
                 printf("FEN error \n");
                 return -1;
         }
-  }
+
+	for (i = 0; i < count; i++) {
+            sq64 = rank * 8 + file;
+			sq120 = SQ120(sq64);
+            if (piece != EMPTY) {
+                pos->pieces[sq120] = piece;
+            }
+			file++;
+
+        }
+		fen++;
+	}
+
+	ASSERT(*fen == 'w' || *fen == 'b');
+
+	pos->side = (*fen == 'w') ? WHITE : BLACK; // ? correspond to if statment 
+	fen += 2;
+
+	for (i = 0; i < 4; i++) {
+        if (*fen == ' ') {
+            break;
+        }
+		switch(*fen) {
+			case 'K': pos->castlePerm |= WKCA; break;
+			case 'Q': pos->castlePerm |= WQCA; break;
+			case 'k': pos->castlePerm |= BKCA; break;
+			case 'q': pos->castlePerm |= BQCA; break;
+			default:	     break;
+        }
+		fen++;
+	}
+	fen++;
+
+	ASSERT(pos->castlePerm>=0 && pos->castlePerm <= 15);
+
+	if (*fen != '-') {
+		file = fen[0] - 'a';
+		rank = fen[1] - '1';
+
+		ASSERT(file>=FILE_A && file <= FILE_H);
+		ASSERT(rank>=RANK_1 && rank <= RANK_8);
+
+		pos->enPas = FR2SQ(file,rank);
+    }
+
+	pos->posKey = GeneratePosKey(pos);
+
+	UpdateListsMaterial(pos);
+
+	return 0;
 }
 
 void ResetBoard(S_BOARD *pos) {
@@ -71,11 +121,15 @@ void ResetBoard(S_BOARD *pos) {
     pos->pieces[SQ120(index)] = EMPTY; 
   }
    
-for (index = 0; index < 3; ++index){
+for (index = 0; index < 2; ++index){
   pos->bigPce[index] = 0; 
   pos->majPce[index] = 0; 
   pos->minPce[index] = 0; 
-  pos->pawns[index] = 0ULL; 
+  pos->material[index] = 0; 
+}
+
+for(index = 0; index < 3; index++){
+  pos->pceNum[index] =0; 
 }
 
 for (index = 0; index < 13; ++index){
@@ -102,4 +156,36 @@ pos->posKey = 0ULL;
   pos->history[index].fiftyMove= 0;
   pos->history[index].posKey = 0ULL; 
 }*/ 
-} 
+}
+
+void PrintBoard(const S_BOARD *pos){
+
+  int sq,file,rank,piece; 
+
+  printf("\nGame Board:\n\n");
+
+  for(rank = RANK_8; rank >= RANK_1; rank--){
+    printf("%d ",rank+1);
+    for(file = FILE_A; file <= FILE_H; file++){
+      sq = FR2SQ(file,rank); 
+      piece = pos->pieces[sq]; 
+      printf("%3c",PceChar[piece]);
+    }
+    printf("\n");
+  }
+
+  printf("\n   ");
+  for(file = FILE_A; file <= FILE_H; file++){
+    printf("%3c",'a'+file);
+  }
+  printf("\n");
+  printf("side:%c\n",SideChar[pos->side]);
+  printf("enPas:%d\n",pos->enPas);
+  printf("castle:%c%c%c%c\n",
+			pos->castlePerm & WKCA ? 'K' : '-',
+			pos->castlePerm & WQCA ? 'Q' : '-',
+			pos->castlePerm & BKCA ? 'k' : '-',
+			pos->castlePerm & BQCA ? 'q' : '-'
+			);
+	printf("PosKey:%llX\n",pos->posKey);
+}

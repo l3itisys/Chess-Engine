@@ -54,21 +54,21 @@ typedef struct {
   int move;
   int castlePerm; 
   int enPas; 
-  int fiftyMv; 
+  int fiftyMove; 
   U64 posKey; 
 
 } S_UNDO; 
 
 typedef struct {
 
-  int piece[BRD_SQ_NUM];
+  int pieces[BRD_SQ_NUM];
   U64 pawns[3];
 
   int KingSq[2]; 
 
   int side; 
   int enPas; 
-  int fiftyMv; 
+  int fiftyMove; 
 
   int ply; 
   int hisPly;
@@ -81,6 +81,7 @@ typedef struct {
   int bigPce[3];
   int majPce[3];
   int minPce[3]; 
+  int material[2]
 
   S_UNDO history[MAXGAMEMOVES];
 
@@ -112,6 +113,10 @@ extern U64 ClearMask[64];
 extern U64 PieceKeys[13][120];
 extern U64 SideKey;
 extern U64 CastleKeys[16]; 
+extern char PceChar[]; 
+extern char SideChar[]; 
+extern char RankChar[]; 
+extern char FileChar[]; 
 
 /* FUNCTIONS */
 // init.c 
@@ -127,5 +132,8 @@ extern U64 GeneratePosKey(const S_BOARD *pos);
 
 // board.c 
 extern void ResetBoard(S_BOARD *pos); 
+extern int ParseFen(char *fen, S_BOARD *pos); 
+extern void PrintBoard(const S_BOARD *pos); 
+
 
 #endif 
