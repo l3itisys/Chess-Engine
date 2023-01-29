@@ -24,7 +24,9 @@ typedef unsigned long long U64; /* Unsigned 64 bits board */
 #define NAME "Vice 1.0"
 #define BRD_SQ_NUM 120
 
-#define MAXGAMEMOVES 2048 
+#define MAXGAMEMOVES 2048
+
+#define START_FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
 enum { EMPTY, wP, wN, wB, wR, wQ, wK, bP, bN, bB, bR, bQ, bK }; 
 enum { FILE_A, FILE_B, FILE_C, FILE_D, FILE_E, FILE_F, FILE_G, FILE_H, FILE_NONE }; 
@@ -94,7 +96,8 @@ int pList[13][10];
 /* MACROS */
 
 #define FR2SQ(f,r) ( (21 + (f) ) + ( (r) * 10) ) 
-#define SQ64(sq120) Sq120ToSq64[sq120]
+#define SQ64(sq120) (Sq120ToSq64[(sq120)])
+#define SQ120(sq64) (Sq64ToSq120[(sq64)])
 #define POP(b) PopBit(b)
 #define CNT(b) CountBits(b)
 #define CLRBIT(bb,sq) ((bb) &= ClearMask[(sq)])
@@ -121,5 +124,8 @@ extern int CountBits(U64 b);
 
 // hashkeys.c
 extern U64 GeneratePosKey(const S_BOARD *pos); 
+
+// board.c 
+extern void ResetBoard(S_BOARD *pos); 
 
 #endif 
