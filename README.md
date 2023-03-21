@@ -19,8 +19,9 @@ To install the chess engine, follow these steps:
 
 1. Clone the repository:
 
-git clone https://github.com/yourusername/chess-engine-c.git
-cd chess-engine-c
+git clone git@github.com:l3itisys/Chess-Engine.git
+
+cd Chess-Engine
 
 2. Compile the source Code: 
 
