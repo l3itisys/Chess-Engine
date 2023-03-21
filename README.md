@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="https://example.com/path/to/your/logo.png" alt="Chess Engine in C Logo"/>
-</p>
 
 <h1 align="center">Chess Engine in C</h1>
 
@@ -26,10 +23,12 @@ git clone https://github.com/yourusername/chess-engine-c.git
 cd chess-engine-c
 
 2. Compile the source Code: 
+
 make 
 
 ## Usage 
 To run the chess engine 
+
 ./chess-engine
 
 ## ⭐ Features 
