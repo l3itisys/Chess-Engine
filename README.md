@@ -32,17 +32,27 @@ To run the chess engine
 ./chess-engine
 
 ## ⭐ Features 
-.🎯 Move generation
-.📚 Board representation
-.🔍 Evaluation function
-.💡 Minimax algorithm with alpha-beta pruning
-.🎮 User-friendly command line interface
+
+-🎯 Move generation
+
+-📚 Board representation
+
+-🔍 Evaluation function
+
+-💡 Minimax algorithm with alpha-beta pruning
+
+-🎮 User-friendly command line interface
 
 ## Contributing 
+
 1.Fork the repository
+
 2.Create a new branch (git checkout -b feature_branch)
+
 3.Commit your changes (git commit -m 'Add new feature')
+
 4.Push to the branch (git push origin feature_branch)
+
 5.Create a Pull Request
 
  ## 📄 License
