@@ -26,12 +26,12 @@ cd chess-engine-c
 
 make 
 
-## Usage 
+## 💻 Usage 
 To run the chess engine 
 
 ./chess-engine
 
-## ⭐ Features 
+## Features 
 
 -🎯 Move generation
 
@@ -43,7 +43,7 @@ To run the chess engine
 
 -🎮 User-friendly command line interface
 
-## Contributing 
+## 🤝 Contributing 
 
 1.Fork the repository
 
