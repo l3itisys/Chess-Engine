@@ -32,11 +32,11 @@ To run the chess engine
 ./chess-engine
 
 ## ⭐ Features 
-🎯 Move generation
-📚 Board representation
-🔍 Evaluation function
-💡 Minimax algorithm with alpha-beta pruning
-🎮 User-friendly command line interface
+.🎯 Move generation
+.📚 Board representation
+.🔍 Evaluation function
+.💡 Minimax algorithm with alpha-beta pruning
+.🎮 User-friendly command line interface
 
 ## Contributing 
 1.Fork the repository
