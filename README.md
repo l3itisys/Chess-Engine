@@ -28,9 +28,9 @@ cd Chess-Engine
 make 
 
 ## 💻 Usage 
-To run the chess engine 
+To run the Chess engine 
 
-./chess-engine
+./Chess-Engine
 
 ## Features 
 
