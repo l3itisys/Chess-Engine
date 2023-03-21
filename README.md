@@ -22,17 +22,14 @@ To install the chess engine, follow these steps:
 
 1. Clone the repository:
 
-```bash
 git clone https://github.com/yourusername/chess-engine-c.git
 cd chess-engine-c
 
 2. Compile the source Code: 
-```bash
 make 
 
 ## Usage 
 To run the chess engine 
-``bash
 ./chess-engine
 
 ## ⭐ Features 
